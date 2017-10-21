@@ -1,0 +1,10 @@
+<h1>Log In Using Eve SSO</h1>
+
+<p>This entire application is run client-side. As such, there is no server to store information about your character with. Logging in will use the OAuth2 Implicit Flow method to get a temporary access token, which we store in your browser's session storage. We do not (and cannot, with this method) get a refresh token to continue getting information from your character. Logging out simply removes the token from your session.</p>
+
+<button type="button" class="btn btn-success" (click)="login()" *ngIf="!token">
+    Login
+</button>
+<button type="button" class="btn btn-warning" (click)="logout()" *ngIf="token">
+    Logout
+</button>
