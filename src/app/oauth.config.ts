@@ -10,6 +10,8 @@ export const AuthConfigInstance: AuthConfig = {
 		" " +
 		"esi-calendar.read_calendar_events.v1" +
 		" " +
-		"esi-corporations.read_structures.v1",
+		"esi-corporations.read_structures.v1" +
+		" " +
+		"esi-universe.read_structures.v1",
 	tokenEndpoint: "https://login.eveonline.com/oauth/token/",
 };

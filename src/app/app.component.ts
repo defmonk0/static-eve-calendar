@@ -20,11 +20,11 @@ export class AppComponent {
 		private oauthService: OAuthService,
 		protected httpClient: HttpClient
 	) {
-		// Update our config.
-		this.apiConfig.accessToken = this.oauthService.getAccessToken();
-
 		// Set up our oauth service.
 		this.oauthService.configure(AuthConfigInstance);
+
+		// Update our config.
+		this.apiConfig.accessToken = this.oauthService.getAccessToken();
 
 		// Subscribe to oauth events.
 		this.oauthService.events.subscribe(res => {
@@ -87,6 +87,7 @@ export class AppComponent {
 
 					break;
 				default:
+					console.log(res);
 					break;
 			}
 		});
