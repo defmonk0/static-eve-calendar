@@ -1,6 +1,6 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './configuration';
 
 import { AllianceService } from './api/alliance.service';
@@ -37,16 +37,54 @@ import { WalletService } from './api/wallet.service';
 import { WarsService } from './api/wars.service';
 
 @NgModule({
-  imports:      [ CommonModule, HttpModule ],
+  imports:      [ CommonModule, HttpClientModule ],
   declarations: [],
   exports:      [],
-  providers:    [ AllianceService, AssetsService, BookmarksService, CalendarService, CharacterService, ClonesService, ContactsService, ContractsService, CorporationService, DogmaService, FactionWarfareService, FittingsService, FleetsService, IncursionsService, IndustryService, InsuranceService, KillmailsService, LocationService, LoyaltyService, MailService, MarketService, OpportunitiesService, PlanetaryInteractionService, RoutesService, SearchService, SkillsService, SovereigntyService, StatusService, UniverseService, UserInterfaceService, WalletService, WarsService ]
+  providers: [
+    AllianceService,
+    AssetsService,
+    BookmarksService,
+    CalendarService,
+    CharacterService,
+    ClonesService,
+    ContactsService,
+    ContractsService,
+    CorporationService,
+    DogmaService,
+    FactionWarfareService,
+    FittingsService,
+    FleetsService,
+    IncursionsService,
+    IndustryService,
+    InsuranceService,
+    KillmailsService,
+    LocationService,
+    LoyaltyService,
+    MailService,
+    MarketService,
+    OpportunitiesService,
+    PlanetaryInteractionService,
+    RoutesService,
+    SearchService,
+    SkillsService,
+    SovereigntyService,
+    StatusService,
+    UniverseService,
+    UserInterfaceService,
+    WalletService,
+    WarsService ]
 })
 export class ApiModule {
-    public static forConfig(configurationFactory: () => Configuration): ModuleWithProviders {
+    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {
         return {
             ngModule: ApiModule,
-            providers: [ {provide: Configuration, useFactory: configurationFactory}]
+            providers: [ { provide: Configuration, useFactory: configurationFactory } ]
+        }
+    }
+
+    constructor( @Optional() @SkipSelf() parentModule: ApiModule) {
+        if (parentModule) {
+            throw new Error('ApiModule is already loaded. Import your base AppModule only.');
         }
     }
 }
