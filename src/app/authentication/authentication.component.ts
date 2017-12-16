@@ -16,13 +16,14 @@ export class AuthenticationComponent implements OnInit {
 
 	public logout() {
 		this.oauthService.logOut();
-		// https://github.com/swagger-api/swagger-codegen/issues/3221#issuecomment-314757762
+		sessionStorage.clear();
 	}
 
 	public get token() {
 		if (!this.oauthService.getAccessToken()) {
 			return false;
 		}
+
 		return true;
 	}
 
